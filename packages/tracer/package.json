@@ -17,18 +17,18 @@
     "test:e2e": "jest --group=e2e",
     "watch": "jest --watch",
     "build": "tsc --build --force",
+    "build:prod": "tshy",
     "lint": "eslint --ext .ts,.js --no-error-on-unmatched-pattern .",
     "lint-fix": "eslint --fix --ext .ts,.js --no-error-on-unmatched-pattern .",
     "prebuild": "rimraf ./lib",
-    "prepack": "node ../../.github/scripts/release_patch_package_json.js ."
+    "prepack": "node ../../.github/scripts/release_patch_package_json.js .",
+    "postpack": "git restore package.json"
   },
   "lint-staged": {
     "*.{js,ts}": "npm run lint-fix"
   },
   "homepage": "https://github.com/aws-powertools/powertools-lambda-typescript/tree/main/packages/tracer#readme",
   "license": "MIT-0",
-  "main": "./lib/index.js",
-  "types": "./lib/index.d.ts",
   "devDependencies": {
     "@aws-lambda-powertools/testing-utils": "file:../testing",
     "@aws-sdk/client-dynamodb": "^3.413.0",
@@ -47,7 +47,7 @@
     }
   },
   "files": [
-    "lib"
+    "dist"
   ],
   "repository": {
     "type": "git",
@@ -68,5 +68,54 @@
     "tracing",
     "serverless",
     "nodejs"
-  ]
+  ],
+  "tshy": {
+    "exports": {
+      "./package.json": "./package.json",
+      ".": {
+        "import": {
+          "types": "./dist/esm/index.d.ts",
+          "default": "./dist/esm/index.js"
+        },
+        "require": {
+          "types": "./dist/commonjs/index.d.ts",
+          "default": "./dist/commonjs/index.js"
+        }
+      },
+      "./middleware": {
+        "import": {
+          "types": "./dist/esm/middleware/index.d.ts",
+          "default": "./dist/esm/middleware/index.js"
+        },
+        "require": {
+          "types": "./dist/commonjs/middleware/index.d.ts",
+          "default": "./dist/commonjs/middleware/index.js"
+        }
+      }
+    }
+  },
+  "type": "module",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/index.d.ts",
+        "default": "./dist/commonjs/index.js"
+      }
+    },
+    "./middleware": {
+      "import": {
+        "types": "./dist/esm/middleware/index.d.ts",
+        "default": "./dist/esm/middleware/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/middleware/index.d.ts",
+        "default": "./dist/commonjs/middleware/index.js"
+      }
+    }
+  }
 }

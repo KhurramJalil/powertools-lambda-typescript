@@ -1,6 +1,5 @@
-import { ContextMissingStrategy } from 'aws-xray-sdk-core/dist/lib/context_utils';
 import { Namespace } from 'cls-hooked';
-import { ProviderServiceInterface } from '.';
+import type { ProviderServiceInterface } from '../types/ProviderService.js';
 import {
   captureAWS,
   captureAWSClient,
@@ -107,7 +106,8 @@ class ProviderService implements ProviderServiceInterface {
   }
 
   public setContextMissingStrategy(strategy: unknown): void {
-    setContextMissingStrategy(strategy as ContextMissingStrategy);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    setContextMissingStrategy(strategy as any);
   }
 
   public setDaemonAddress(address: string): void {

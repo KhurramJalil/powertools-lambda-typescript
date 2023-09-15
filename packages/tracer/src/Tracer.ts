@@ -4,19 +4,18 @@ import {
   type SyncHandler,
   Utility,
 } from '@aws-lambda-powertools/commons';
-import type { TracerInterface } from '.';
-import {
-  type ConfigServiceInterface,
-  EnvironmentVariablesService,
-} from './config';
+import { EnvironmentVariablesService } from './config/index.js';
 import type {
   HandlerMethodDecorator,
   TracerOptions,
   MethodDecorator,
   CaptureLambdaHandlerOptions,
   CaptureMethodOptions,
-} from './types';
-import { ProviderService, type ProviderServiceInterface } from './provider';
+  TracerInterface,
+  ConfigServiceInterface,
+  ProviderServiceInterface,
+} from './types/index.js';
+import { ProviderService } from './provider/index.js';
 import { type Segment, Subsegment } from 'aws-xray-sdk-core';
 
 /**

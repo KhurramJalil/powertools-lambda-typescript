@@ -50,3 +50,7 @@ tmp
 
 # TS build files
 tsconfig.tsbuildinfo
+
+# TSHY tmp files
+.tshy
+.tshy-build-tmp

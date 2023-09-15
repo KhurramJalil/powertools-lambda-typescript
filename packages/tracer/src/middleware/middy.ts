@@ -1,7 +1,7 @@
 import { TRACER_KEY } from '@aws-lambda-powertools/commons/lib/middleware';
-import type { Tracer } from '../Tracer';
+import type { Tracer } from '../Tracer.js';
 import type { Segment, Subsegment } from 'aws-xray-sdk-core';
-import type { CaptureLambdaHandlerOptions } from '../types';
+import type { CaptureLambdaHandlerOptions } from '../types/index.js';
 import type {
   MiddlewareLikeObj,
   MiddyLikeRequest,

@@ -1,10 +1,11 @@
-import type { ConfigServiceInterface } from '../config';
+import type { ConfigServiceInterface } from './ConfigService.js';
 import type { Handler } from 'aws-lambda';
 import type {
   AsyncHandler,
   LambdaInterface,
   SyncHandler,
 } from '@aws-lambda-powertools/commons';
+import type { Segment, Subsegment } from 'aws-xray-sdk-core';
 
 /**
  * Options for the tracer class to be used during initialization.
@@ -118,10 +119,36 @@ type MethodDecorator = (
   // eslint-disable-next-line  @typescript-eslint/no-explicit-any
 ) => any;
 
+interface TracerInterface {
+  addErrorAsMetadata(error: Error, remote?: boolean): void;
+  addResponseAsMetadata(data?: unknown, methodName?: string): void;
+  addServiceNameAnnotation(): void;
+  annotateColdStart(): void;
+  captureAWS<T>(aws: T): void | T;
+  captureAWSv3Client<T>(service: T): void | T;
+  captureAWSClient<T>(service: T): void | T;
+  captureLambdaHandler(
+    options?: CaptureLambdaHandlerOptions
+  ): HandlerMethodDecorator;
+  captureMethod(options?: CaptureMethodOptions): MethodDecorator;
+  getSegment(): Segment | Subsegment | undefined;
+  getRootXrayTraceId(): string | undefined;
+  isTraceSampled(): boolean;
+  isTracingEnabled(): boolean;
+  putAnnotation: (key: string, value: string | number | boolean) => void;
+  putMetadata: (
+    key: string,
+    value: unknown,
+    namespace?: string | undefined
+  ) => void;
+  setSegment(segment: Segment | Subsegment): void;
+}
+
 export {
   TracerOptions,
   CaptureLambdaHandlerOptions,
   CaptureMethodOptions,
   HandlerMethodDecorator,
   MethodDecorator,
+  TracerInterface,
 };

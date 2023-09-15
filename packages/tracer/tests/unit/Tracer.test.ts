@@ -8,14 +8,14 @@ import {
   Events as dummyEvent,
   LambdaInterface,
 } from '@aws-lambda-powertools/commons';
-import { Tracer } from './../../src';
-import type { Callback, Context } from 'aws-lambda/handler';
+import { Tracer } from '../../src/index.js';
+import type { Callback, Context } from 'aws-lambda';
 import {
   Segment,
   setContextMissingStrategy,
   Subsegment,
 } from 'aws-xray-sdk-core';
-import { ProviderServiceInterface } from '../../src/provider';
+import { ProviderServiceInterface } from '../../src/types/index.js';
 
 type CaptureAsyncFuncMock = jest.SpyInstance<
   unknown,

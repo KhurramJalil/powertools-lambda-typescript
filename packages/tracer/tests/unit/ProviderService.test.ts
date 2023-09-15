@@ -4,7 +4,7 @@
  * @group unit/tracer/providerservice
  */
 
-import { ProviderService } from '../../src/provider';
+import { ProviderService } from '../../src/provider/index.js';
 import {
   captureAsyncFunc,
   captureAWS,

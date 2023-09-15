@@ -9,6 +9,9 @@ module.exports = {
     '^.+\\.ts?$': 'ts-jest',
   },
   moduleFileExtensions: ['js', 'ts'],
+  moduleNameMapper: {
+    '^(\\.{1,2}/.*)\\.js$': '$1',
+  },
   collectCoverageFrom: ['**/src/**/*.ts', '!**/node_modules/**'],
   testMatch: ['**/?(*.)+(spec|test).ts'],
   roots: ['<rootDir>/src', '<rootDir>/tests'],

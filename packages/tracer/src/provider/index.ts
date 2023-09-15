@@ -1,2 +1,1 @@
-export * from './ProviderService';
-export * from './ProviderServiceInterface';
+export * from './ProviderService.js';
