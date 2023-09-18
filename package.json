@@ -46,7 +46,6 @@
   },
   "homepage": "https://github.com/aws-powertools/powertools-lambda-typescript#readme",
   "devDependencies": {
-    "@arethetypeswrong/cli": "^0.10.2",
     "@middy/core": "^3.6.2",
     "@types/aws-lambda": "^8.10.121",
     "@types/jest": "^29.5.4",
@@ -69,7 +68,7 @@
     "rimraf": "^5.0.1",
     "ts-jest": "^29.1.1",
     "ts-node": "^10.9.1",
-    "tshy": "^1.0.0",
+    "tshy": "^1.1.1",
     "typedoc": "^0.25.1",
     "typedoc-plugin-missing-exports": "^2.1.0",
     "typescript": "^5.2.2"
